@@ -64,7 +64,7 @@ app.get('/r/:username/:password',(req,res)=>{
     const {username,password}=req.params;
 
     console.log(req.params);
-    req.send(`your username is ${username}, your password is, ${password}`);
+    res.send(`your username is ${username}, your password is, ${password}`);
     
 })
 
