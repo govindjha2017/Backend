@@ -8,9 +8,9 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" >
+        <div class="container-fluid" >
+          <a class="navbar-brand" href="#" >Navbar</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -45,12 +45,14 @@
 
 
     <div class="parent" style="display: flex; gap: 15px;">
-        <div class="card" style="width: 18rem; margin-left:10%">
-            <img src="<%= product.image %>" class="card-img-top" style="height:40vh ;" alt="...">
-            <div class="card-body">
-              <a href="/products/<%= product._id%>/edit" class="btn btn-sm btn-primary">Edit Products</a>
-              <a href="/products/<%= product._id%>/delete" class="btn btn-sm btn-primary">Delete Products</a>
+        <div class="card" style="width: 35rem; margin-left:10%">
+            <img src="<%= product.image %>" class="card-img-top" style="height:60vh ;" alt="...">
+            <div class="card-body" style="display: flex; justify-content: space-evenly;">
               <a href="/products/<%= product._id %>" class="btn btn-sm btn-primary">Buy Now</a>
+              <a href="/products/<%= product._id%>/edit" class="btn btn-sm btn-primary">Edit</a>
+              <a href="/products/<%= product._id%>/delete" class="btn btn-sm btn-primary">Delete</a>
+              <a href="#" class="btn btn-sm btn-primary">Add to cart</a>
+              
             </div>
           </div>
 

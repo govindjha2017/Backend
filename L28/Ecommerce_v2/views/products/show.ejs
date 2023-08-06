@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/star.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" >
+        <div class="container-fluid" >
+          <a class="navbar-brand" href="#" >Navbar</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/products/new">Add Products</a>
+              </li>
+              
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Dropdown
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+              </li>
+            </ul>
+             
+          </div>
+        </div>
+      </nav>
+
+
+    <div class="parent" style="display: flex; gap: 15px;">
+        <div class="card" style="width: 35rem; margin-left:10%">
+            <img src="<%= product.image %>" class="card-img-top" style="height:60vh ;" alt="...">
+            <div class="card-body" style="display: flex; justify-content: space-evenly;">
+              <a href="/products/<%= product._id %>" class="btn btn-sm btn-primary ">Buy Now</a>
+              <a href="/products/<%= product._id%>/edit" class="btn btn-sm btn-warning">Edit</a>
+              <a href="/products/<%= product._id%>/delete" class="btn btn-sm btn-danger">Delete</a>
+              <a href="#" class="btn btn-sm btn-success">Add to cart</a>
+              
+            </div>
+          </div>
+
+          <div style=" margin-right:10%">
+                <div>
+                    <h5 class="card-title"><%= product.name %></h5>
+                    <p class="card-text"><%= product.desc %></p>
+                    <h5>$ <%= product.price %></h5>
+                </div>
+                <!-- //.....// -->
+                <div class="review">
+                  <h2>Review</h2>
+                  <form action="/products/<%= product._id %>/review" method="POST">
+                    <fieldset class="starability-basic"> 
+                      <legend>Rating:</legend>
+                      <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
+                      <input type="radio" id="first-rate1" name="rating" value="1" />
+                      <label for="first-rate1" title="Terrible">1 star</label>
+                      <input type="radio" id="first-rate2" name="rating" value="2" />
+                      <label for="first-rate2" title="Not good">2 stars</label>
+                      <input type="radio" id="first-rate3" name="rating" value="3" />
+                      <label for="first-rate3" title="Average">3 stars</label>
+                      <input type="radio" id="first-rate4" name="rating" value="4" />
+                      <label for="first-rate4" title="Very good">4 stars</label>
+                      <input type="radio" id="first-rate5" name="rating" value="5" />
+                      <label for="first-rate5" title="Amazing">5 stars</label>
+                    </fieldset>
+                    <textarea class="form-control" name="comment" cols="30" rows="3"></textarea>
+                    <button class="btn btn-sm btn-primary">Submit</button>
+                  </form>
+
+                </div>
+                <% for(let review of product.reviews){ %>
+                  <div class="card-body">
+                        <p class="starability-result" data-rating="<%= review.rating %>">
+                          Rated: 3 stars
+                        </p>
+                      <p class="card-text"><%= review.comment %></p>
+                      <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                  </div>
+               <% } %>
+          </div>
+    </div>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
