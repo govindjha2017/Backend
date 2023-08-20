@@ -4,6 +4,7 @@ const path= require('path');
 
 const session = require('express-session');
 
+const bcrypt = require('bcrypt');
 
 app.set('view engine','ejs');
 app.set('views',path.join(__dirname,'views'));
@@ -46,8 +47,10 @@ app.get('/signup',(req,res)=>{
 
 
 app.post('/signup',async(req,res)=>{
-    const {username,email,password} = req.body;
+    var {username,email,password} = req.body;
     const user = await User.findOne({username});
+    const hashPassword =await bcrypt.hash(password, 10);
+    password=hashPassword;
     if(!user){
         await User.create({email,password,username});
         res.redirect('/login');
@@ -65,7 +68,14 @@ app.post('/login',async(req,res)=>{
     const {username ,password} = req.body;
     const user = await User.findOne({username});
     if(user){
-        if(user.password==password){
+        // if(user.password==password){
+        //     req.session.username = username;
+        //     res.redirect('/home');
+        // }
+        var hash= await user.password;
+        const isValid = await bcrypt.compare(password, hash);
+        console.log(isValid);
+        if(isValid){
             req.session.username = username;
             res.redirect('/home');
         }
@@ -76,6 +86,12 @@ app.post('/login',async(req,res)=>{
     else{
         res.redirect('/signup');
     }
+})
+
+app.post('/logout',(req,res)=>{
+    console.log('hello');
+    req.session.destroy();
+    res.redirect('/login')
 })
 
 app.get('*',(req,res)=>{
