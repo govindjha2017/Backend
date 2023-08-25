@@ -11,8 +11,8 @@ router.post('/products/:productId/review',async (req,res)=>{
     const newReview = await Review.create({rating, comment});
     const product = await Product.findById(productId);
 
-     product.reviews.push(newReview);
-    product.save();
+    product.reviews.push(newReview);
+     await product.save();
     // console.log('hjds');
     res.redirect('back');
 })

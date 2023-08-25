@@ -16,6 +16,7 @@ router.use(express.urlencoded({extended:true}));
 
 router.post('/products',async (req,res)=>{
     const { name , image , price , desc} = req.body;
+    console.log(req.body);
     await Product.create({name,image,price,desc});
     res.redirect('/products');
 })

@@ -52,8 +52,11 @@
         <% for( let product of products ) { %>
             <div class="card" style="width: 18rem;">
                 <img src="<%= product.image %>" class="card-img-top" style="height: 200px;" alt="...">
-                <span class="badge rounded-pill text-bg-light"><%=(product.avgrating).toFixed(2)%>&#9733;/<%=product.reviews.length %>
+                <% if(product.avgrating){ %>
+                  <span class="badge rounded-pill text-bg-light"><%=(product.avgrating).toFixed(2)%>&#9733;/<%=product.reviews.length %>
                   </span>
+               <% }%>
+                
                 <div class="card-body">
                   <h5 class="card-title"><%= product.name %></h5>
                   <h5>$ <%= product.price %></h5>
