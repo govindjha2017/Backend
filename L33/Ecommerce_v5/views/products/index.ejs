@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
 </head>
 <body>
   <% if (success && success.length) { %>
@@ -69,8 +72,10 @@
                 <% } %>
                 
                 <div class="card-body">
-                  <h5 class="card-title"><%= product.name %></h5>
+                  <h5 class="card-title d-flex justify-content-between align-items-center">
+                  <span class="card-title"><%= product.name %></span>
                   <i class="btn product-like-btn fa-regular fa-heart" product-id="<%= product._id %>"></i>
+                </h5>
                   <h5>$ <%= product.price %></h5>
                   <p class="card-text"><%= product.desc %></p>
                   <div class="text-center">
@@ -80,7 +85,7 @@
               </div>
         <% } %>
     </section>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/like.js"></script>
 </body>
 </html>

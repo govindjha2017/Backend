@@ -1,7 +1,7 @@
 const Product = require('./models/product');
 
 module.exports.isLoggedIn = async (req,res,next)=>{
-    if(req.xhr){
+    if(req.xhr && !req.isAuthenticated()){
         return res.status(401).json({
             msg:'Plz login first'
         })

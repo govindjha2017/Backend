@@ -52,10 +52,14 @@ app.get('/',(req,res)=>{
   const reviewRoutes = require('./routes/review');
   const authRoutes = require('./routes/auth');
 
+// -------------- APIs
+const productAPI = require('./routes/api/productapi');
+
 
   app.use(productRoutes);
   app.use(reviewRoutes);
   app.use(authRoutes);
+  app.use(productAPI);
 
 
 const port = 4000;
